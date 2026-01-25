@@ -483,7 +483,10 @@ def encode(task_id: TaskID, settings: list) -> None:
                     pb.update(task_id=task_id, completed=float(progress[1]))
 
             if 'error' in line.lower():
-                oprint(line.rstrip().split(': ', 1)[1])
+                try:
+                    oprint(line.rstrip().split(': ', 1)[1])
+                except IndexError:
+                    oprint(line.rstrip())
     pb.update(task_id=task_id, completed=100)
 
     if not args.keeptemp:
