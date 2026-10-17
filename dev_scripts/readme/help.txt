@@ -1,20 +1,26 @@
-deew 3.2.1
+deew 3.3.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
-            [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
-            [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl]
-            [-cl] [-c] [-gc]
+            [-at] [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC]
+            [-dn DIALNORM] [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la]
+            [-np] [-pl] [-cl] [-c] [-gc]
 
 FLAGS:
   -h, --help                  show this help message.
   -v, --version               show version.
   -i, --input [INPUT ...]     audio file(s) or folder(s)
+                              DAMF (Dolby Atmos Master Format) files (.atmos) are
+                              supported and are passed to DEE directly, without ffmpeg
   -ti, --track-index INDEX    default: 0
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
   -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
+                              DAMF input can only be encoded to ddp or ac4
+  -at, --atmos                encodes Dolby Atmos in a Dolby Digital Plus bitstream
+                              PCM input becomes a bed-only Atmos presentation, DAMF always uses this filter
+                              only works with ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
   -dm, --downmix CHANNELS     options: 1 / 2 / 6

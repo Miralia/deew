@@ -223,3 +223,212 @@ xml_ac4_base = '''<?xml version="1.0"?>
     </temp_dir>
   </misc>
 </job_config>'''
+
+xml_atmos_ddp_base = '''<?xml version="1.0"?>
+<job_config>
+  <input>
+    <audio>
+      <wav version="1">
+        <file_name>-</file_name>    <!-- string -->
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <offset>auto</offset>    <!-- string -->
+        <ffoa>auto</ffoa>    <!-- string -->
+        <storage>
+          <local>
+            <path>-</path>    <!-- string -->
+          </local>
+        </storage>
+      </wav>
+    </audio>
+  </input>
+  <filter>
+    <audio>
+      <encode_to_atmos_ddp version="1">
+        <loudness>
+          <measure_only>
+            <metering_mode>1770-4</metering_mode>    <!-- One of: 1770-4, 1770-3, 1770-2, 1770-1, LeqA -->
+            <dialogue_intelligence>true</dialogue_intelligence>    <!-- boolean: true or false -->
+            <speech_threshold>15</speech_threshold>    <!-- integer: from 0 to 100 -->
+          </measure_only>
+        </loudness>
+        <data_rate>-</data_rate>    <!-- One or multiple of: 384, 448, 576, 640, 768, 1024 -->
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <start>first_frame_of_action</start>    <!-- string -->
+        <end>end_of_file</end>    <!-- string -->
+        <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
+        <prepend_silence_duration>0.0</prepend_silence_duration>    <!-- string -->
+        <append_silence_duration>0.0</append_silence_duration>    <!-- string -->
+        <drc>
+          <line_mode_drc_profile>-</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+          <rf_mode_drc_profile>-</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+        </drc>
+        <downmix>
+          <loro_center_mix_level>-3</loro_center_mix_level>    <!-- One of: +3, +1.5, 0, -1.5, -3, -4.5, -6, -inf -->
+          <loro_surround_mix_level>-3</loro_surround_mix_level>    <!-- One of: -1.5, -3, -4.5, -6, -inf -->
+          <ltrt_center_mix_level>-3</ltrt_center_mix_level>    <!-- One of: +3, +1.5, 0, -1.5, -3, -4.5, -6, -inf -->
+          <ltrt_surround_mix_level>-3</ltrt_surround_mix_level>    <!-- One of: -1.5, -3, -4.5, -6, -inf -->
+          <preferred_downmix_mode>loro</preferred_downmix_mode>    <!-- One of: loro, ltrt, ltrt-pl2, not_indicated -->
+        </downmix>
+        <custom_trims>
+          <surround_trim_5_1>auto</surround_trim_5_1>    <!-- One of: 0, -3, -6, -9, auto -->
+          <height_trim_5_1>auto</height_trim_5_1>    <!-- One of: -3, -6, -9, -12, auto -->
+        </custom_trims>
+        <custom_dialnorm>0</custom_dialnorm>    <!-- integer: from -31 to 0 (0 means DEE's measurement will be used) -->
+      </encode_to_atmos_ddp>
+    </audio>
+  </filter>
+  <output>
+    <ec3 version="1">
+      <file_name>-</file_name>    <!-- string -->
+      <storage>
+        <local>
+          <path>-</path>    <!-- string -->
+        </local>
+      </storage>
+    </ec3>
+  </output>
+  <misc>
+    <temp_dir>
+      <clean_temp>true</clean_temp>
+      <path>-</path>
+    </temp_dir>
+  </misc>
+</job_config>'''
+
+xml_damf_ac4_base = '''<?xml version="1.0"?>
+<job_config>
+  <input>
+    <audio>
+      <damf version="1">
+        <file_name>-</file_name>    <!-- string -->
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <offset>auto</offset>    <!-- string -->
+        <ffoa>auto</ffoa>    <!-- string -->
+        <storage>
+          <local>
+            <path>-</path>    <!-- string -->
+          </local>
+        </storage>
+      </damf>
+    </audio>
+  </input>
+  <filter>
+    <audio>
+      <encode_to_ims_ac4 version="1">
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <start>first_frame_of_action</start>    <!-- string -->
+        <end>end_of_file</end>    <!-- string -->
+        <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
+        <prepend_silence_duration>0</prepend_silence_duration>    <!-- string -->
+        <append_silence_duration>0</append_silence_duration>    <!-- string -->
+        <loudness>
+          <measure_only>
+            <metering_mode>1770-4</metering_mode>    <!-- One of: 1770-4, 1770-3, 1770-2, 1770-1, LeqA -->
+            <dialogue_intelligence>true</dialogue_intelligence>    <!-- boolean: true or false -->
+            <speech_threshold>15</speech_threshold>    <!-- integer: from 0 to 100 -->
+          </measure_only>
+        </loudness>
+        <data_rate>-</data_rate>    <!-- One of: 64, 72, 112, 144, 256, 320 -->
+        <ac4_frame_rate>native</ac4_frame_rate>    <!-- One of: native, 23.976, 24, 25, 29.97 -->
+        <ims_legacy_presentation>false</ims_legacy_presentation>    <!-- boolean: true or false -->
+        <iframe_interval>0</iframe_interval>    <!-- integer: from 0 to 1000 -->
+        <language>eng-US</language>    <!-- For example "eng-US". Remove this parameter to leave language tag empty. -->
+        <encoding_profile>ims</encoding_profile>    <!-- One of: ims, ims_music -->
+        <drc>
+          <ddp_drc_profile>-</ddp_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+          <flat_panel_drc_profile>-</flat_panel_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+          <home_theatre_drc_profile>-</home_theatre_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+          <portable_hp_drc_profile>-</portable_hp_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+          <portable_spkr_drc_profile>-</portable_spkr_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+        </drc>
+      </encode_to_ims_ac4>
+    </audio>
+  </filter>
+  <output>
+    <ac4 version="1">
+      <file_name>-</file_name>    <!-- string -->
+      <storage>
+        <local>
+          <path>-</path>    <!-- string -->
+        </local>
+      </storage>
+    </ac4>
+  </output>
+  <misc>
+    <temp_dir>
+      <clean_temp>true</clean_temp>
+      <path>-</path>
+    </temp_dir>
+  </misc>
+</job_config>'''
+
+xml_damf_ddp_base = '''<?xml version="1.0"?>
+<job_config>
+  <input>
+    <audio>
+      <damf version="1">
+        <file_name>-</file_name>    <!-- string -->
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <offset>auto</offset>    <!-- string -->
+        <ffoa>auto</ffoa>    <!-- string -->
+        <storage>
+          <local>
+            <path>-</path>    <!-- string -->
+          </local>
+        </storage>
+      </damf>
+    </audio>
+  </input>
+  <filter>
+    <audio>
+      <encode_to_atmos_ddp version="1">
+        <loudness>
+          <measure_only>
+            <metering_mode>1770-4</metering_mode>    <!-- One of: 1770-4, 1770-3, 1770-2, 1770-1, LeqA -->
+            <dialogue_intelligence>true</dialogue_intelligence>    <!-- boolean: true or false -->
+            <speech_threshold>15</speech_threshold>    <!-- integer: from 0 to 100 -->
+          </measure_only>
+        </loudness>
+        <data_rate>-</data_rate>    <!-- One or multiple of: 384, 448, 576, 640, 768, 1024 -->
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <start>first_frame_of_action</start>    <!-- string -->
+        <end>end_of_file</end>    <!-- string -->
+        <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
+        <prepend_silence_duration>0.0</prepend_silence_duration>    <!-- string -->
+        <append_silence_duration>0.0</append_silence_duration>    <!-- string -->
+        <drc>
+          <line_mode_drc_profile>-</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+          <rf_mode_drc_profile>-</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech, none -->
+        </drc>
+        <downmix>
+          <loro_center_mix_level>-3</loro_center_mix_level>    <!-- One of: +3, +1.5, 0, -1.5, -3, -4.5, -6, -inf -->
+          <loro_surround_mix_level>-3</loro_surround_mix_level>    <!-- One of: -1.5, -3, -4.5, -6, -inf -->
+          <ltrt_center_mix_level>-3</ltrt_center_mix_level>    <!-- One of: +3, +1.5, 0, -1.5, -3, -4.5, -6, -inf -->
+          <ltrt_surround_mix_level>-3</ltrt_surround_mix_level>    <!-- One of: -1.5, -3, -4.5, -6, -inf -->
+          <preferred_downmix_mode>loro</preferred_downmix_mode>    <!-- One of: loro, ltrt, ltrt-pl2, not_indicated -->
+        </downmix>
+        <custom_trims>
+          <surround_trim_5_1>auto</surround_trim_5_1>    <!-- One of: 0, -3, -6, -9, auto -->
+          <height_trim_5_1>auto</height_trim_5_1>    <!-- One of: -3, -6, -9, -12, auto -->
+        </custom_trims>
+        <custom_dialnorm>0</custom_dialnorm>    <!-- integer: from -31 to 0 (0 means DEE's measurement will be used) -->
+      </encode_to_atmos_ddp>
+    </audio>
+  </filter>
+  <output>
+    <ec3 version="1">
+      <file_name>-</file_name>    <!-- string -->
+      <storage>
+        <local>
+          <path>-</path>    <!-- string -->
+        </local>
+      </storage>
+    </ec3>
+  </output>
+  <misc>
+    <temp_dir>
+      <clean_temp>true</clean_temp>
+      <path>-</path>
+    </temp_dir>
+  </misc>
+</job_config>'''

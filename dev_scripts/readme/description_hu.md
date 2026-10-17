@@ -16,6 +16,8 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - akár videó inputokkal is működik (az első audió kerül kiválasztásra)
+- DAMF (Dolby Atmos Master Format) input támogatás (`.atmos`), ffmpeg nélkül, közvetlenül a DEE-nek átadva
+- Atmos kódolás Dolby Digital Plus bitfolyamba, DAMF inputnál mindig ez történik, PCM inputnál `-at`/`--atmos` kapcsolóval (csak bed prezentáció)
 - csicsás terminálkimenet rich használatával
 - sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
 - delay parse-olása fájlnévből

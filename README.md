@@ -4,7 +4,7 @@
 [![pypi_downloads](https://img.shields.io/pypi/dm/deew?color=70920c&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/deew)
 [![license](https://img.shields.io/github/license/pcroland/deew?color=blueviolet&style=flat-square)](https://github.com/pcroland/deew/blob/master/LICENSE)
 \
-[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fx0.gs%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeewsupport)](https://t.me/deewsupport)
+[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeew_support)](https://t.me/deew_support)
 [![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
 [![open_issues](https://img.shields.io/github/issues/pcroland/deew?color=718bcd&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
 [![closed_issues](https://img.shields.io/github/issues-closed/pcroland/deew?color=253e80&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues?q=is%3Aissue+is%3Aclosed)
@@ -13,8 +13,8 @@
 [![name](https://img.shields.io/pypi/pyversions/deew?logo=Python&logoColor=eeeeee&color=eeeeee&style=flat-square)](https://github.com/pcroland/deew)
 [![name](https://img.shields.io/badge/DEE-5.1.0--5.2.1-green?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg==&color=eeeeee&style=flat-square)](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)
 <hr>
-
 <p align="center"><img width="192" src="https://raw.githubusercontent.com/pcroland/deew/main/logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
+
 
 <p align="center"><a href="https://github.com/pcroland/deew/blob/main/README.md">English readme</a>
  • <a href="https://github.com/pcroland/deew/blob/main/README_hu.md">Magyar leírás</a></p>
@@ -43,6 +43,8 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - works even with video inputs (first audio will be selected)
+- DAMF (Dolby Atmos Master Format) input support (`.atmos`), handed over to DEE directly without ffmpeg
+- Atmos encoding in a Dolby Digital Plus bitstream, DAMF input always uses it, PCM input with `-at`/`--atmos` (bed-only presentation)
 - fancy terminal output using rich
 - versatile delay option that supports ms, s and also frame@fps formats
 - parsing delay from filenames
@@ -99,23 +101,29 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Usage
 ```
 ❯ deew -h
-deew 3.2.1
+deew 3.3.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
-            [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
-            [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl]
-            [-cl] [-c] [-gc]
+            [-at] [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC]
+            [-dn DIALNORM] [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la]
+            [-np] [-pl] [-cl] [-c] [-gc]
 
 FLAGS:
   -h, --help                  show this help message.
   -v, --version               show version.
   -i, --input [INPUT ...]     audio file(s) or folder(s)
+                              DAMF (Dolby Atmos Master Format) files (.atmos) are
+                              supported and are passed to DEE directly, without ffmpeg
   -ti, --track-index INDEX    default: 0
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
   -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
+                              DAMF input can only be encoded to ddp or ac4
+  -at, --atmos                encodes Dolby Atmos in a Dolby Digital Plus bitstream
+                              PCM input becomes a bed-only Atmos presentation, DAMF always uses this filter
+                              only works with ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
   -dm, --downmix CHANNELS     options: 1 / 2 / 6
@@ -171,5 +179,11 @@ encode TrueHD
 `deew -f ddp -i *dts`\
 encode multiple formats/bitrates while creating the temp file only once
 
+`deew -i printmaster.atmos`\
+encode Atmos DDP from a DAMF master
+
+`deew -at -i *.wav`\
+encode Atmos DDP from PCM (bed-only presentation)
+
 # Discussion and Support
-[https://t.me/deewsupport](https://t.me/deewsupport)
+[https://t.me/deew_support](https://t.me/deew_support)

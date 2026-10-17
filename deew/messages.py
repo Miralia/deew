@@ -18,5 +18,10 @@ error_messages = {
     'channels'          : 'number of input channels can only be [bold yellow]1[/bold yellow], [bold yellow]2[/bold yellow], [bold yellow]6[/bold yellow] or [bold yellow]8[/bold yellow].',
     'binary_exist'      : '[bold yellow]🤠[/bold yellow] does not exist.',
     'config_key'        : 'the following keys are missing from your config file: 🤠.\nUpdate your config file.',
-    'ac4_input_channels': 'input channels for AC4 encoding can only be [bold yellow]6[/bold yellow].'
+    'ac4_input_channels': 'input channels for AC4 encoding can only be [bold yellow]6[/bold yellow].',
+    'damf_format'       : 'DAMF input can only be encoded to [bold yellow]ddp[/bold yellow] or [bold yellow]ac4[/bold yellow].',
+    'damf_mixed'        : 'DAMF and non-DAMF inputs can\'t be used in the same run.',
+    'damf_delay'        : '[bold yellow]-d[/bold yellow]/[bold yellow]--delay[/bold yellow] can\'t be used with DAMF input, the timecode is stored in the DAMF.',
+    'atmos_format'      : '[bold yellow]-at[/bold yellow]/[bold yellow]--atmos[/bold yellow] can only be used with [bold yellow]-f ddp[/bold yellow].',
+    'atmos_downmix'     : '[bold yellow]-dm[/bold yellow]/[bold yellow]--downmix[/bold yellow] can\'t be used for Atmos encoding.'
 }

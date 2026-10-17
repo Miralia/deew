@@ -1,3 +1,11 @@
+# deew 3.3.0:
+- add DAMF (Dolby Atmos Master Format) input support, `.atmos` files are handed
+  over to DEE directly without ffmpeg and can be encoded to DDP (Atmos) or AC4
+- add `-at`/`--atmos` option to encode PCM input as a bed-only Atmos
+  presentation in a Dolby Digital Plus bitstream
+- update dependencies and add Python 3.14 support
+- fix `UnicodeEncodeError` with piped or redirected output on non-utf-8 code pages
+
 # deew 3.2.2:
 - remove unnecessary thing for measure only
 - try to fix temp delete

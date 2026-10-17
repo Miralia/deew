@@ -16,3 +16,9 @@ encode TrueHD
 `deew -f dd -i *dts -k`\
 `deew -f ddp -i *dts`\
 encode multiple formats/bitrates while creating the temp file only once
+
+`deew -i printmaster.atmos`\
+encode Atmos DDP from a DAMF master
+
+`deew -at -i *.wav`\
+encode Atmos DDP from PCM (bed-only presentation)

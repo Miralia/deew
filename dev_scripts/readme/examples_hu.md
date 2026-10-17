@@ -16,3 +16,9 @@ TrueHD encode-olása
 `deew -f dd -i *dts -k`\
 `deew -f ddp -i *dts`\
 több formátum/bitráta kódolása egy ideiglenes fájl készítésével
+
+`deew -i printmaster.atmos`\
+Atmos DDP kódolása DAMF masterből
+
+`deew -at -i *.wav`\
+Atmos DDP kódolása PCM-ből (csak bed prezentáció)

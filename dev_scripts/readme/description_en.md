@@ -16,6 +16,8 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - works even with video inputs (first audio will be selected)
+- DAMF (Dolby Atmos Master Format) input support (`.atmos`), handed over to DEE directly without ffmpeg
+- Atmos encoding in a Dolby Digital Plus bitstream, DAMF input always uses it, PCM input with `-at`/`--atmos` (bed-only presentation)
 - fancy terminal output using rich
 - versatile delay option that supports ms, s and also frame@fps formats
 - parsing delay from filenames

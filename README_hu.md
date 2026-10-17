@@ -43,6 +43,8 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - akár videó inputokkal is működik (az első audió kerül kiválasztásra)
+- DAMF (Dolby Atmos Master Format) input támogatás (`.atmos`), ffmpeg nélkül, közvetlenül a DEE-nek átadva
+- Atmos kódolás Dolby Digital Plus bitfolyamba, DAMF inputnál mindig ez történik, PCM inputnál `-at`/`--atmos` kapcsolóval (csak bed prezentáció)
 - csicsás terminálkimenet rich használatával
 - sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
 - delay parse-olása fájlnévből
@@ -99,23 +101,29 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 3.2.1
+deew 3.3.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
-            [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
-            [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl]
-            [-cl] [-c] [-gc]
+            [-at] [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC]
+            [-dn DIALNORM] [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la]
+            [-np] [-pl] [-cl] [-c] [-gc]
 
 FLAGS:
   -h, --help                  show this help message.
   -v, --version               show version.
   -i, --input [INPUT ...]     audio file(s) or folder(s)
+                              DAMF (Dolby Atmos Master Format) files (.atmos) are
+                              supported and are passed to DEE directly, without ffmpeg
   -ti, --track-index INDEX    default: 0
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
   -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
+                              DAMF input can only be encoded to ddp or ac4
+  -at, --atmos                encodes Dolby Atmos in a Dolby Digital Plus bitstream
+                              PCM input becomes a bed-only Atmos presentation, DAMF always uses this filter
+                              only works with ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
   -dm, --downmix CHANNELS     options: 1 / 2 / 6
@@ -170,6 +178,12 @@ TrueHD encode-olása
 `deew -f dd -i *dts -k`\
 `deew -f ddp -i *dts`\
 több formátum/bitráta kódolása egy ideiglenes fájl készítésével
+
+`deew -i printmaster.atmos`\
+Atmos DDP kódolása DAMF masterből
+
+`deew -at -i *.wav`\
+Atmos DDP kódolása PCM-ből (csak bed prezentáció)
 
 # Beszélgetés és support
 [https://t.me/deew_support](https://t.me/deew_support)
