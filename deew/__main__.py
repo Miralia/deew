@@ -45,7 +45,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_ac4_base, xml_atmos_ddp_base, xml_damf_ac4_base, xml_damf_ddp_base, xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '3.3.0'
+prog_version = '3.2.3'
 
 # DAMF (Dolby Atmos Master Format) input is a set of files: the .atmos file is the
 # entry point and it references the .atmos.audio and .atmos.metadata sidecar files,

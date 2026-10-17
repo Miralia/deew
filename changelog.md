@@ -1,4 +1,4 @@
-# deew 3.3.0:
+# deew 3.2.3:
 - add DAMF (Dolby Atmos Master Format) input support, `.atmos` files are handed
   over to DEE directly without ffmpeg and can be encoded to DDP (Atmos) or AC4
 - add `-at`/`--atmos` option to encode PCM input as a bed-only Atmos

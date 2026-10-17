@@ -1,4 +1,4 @@
-deew 3.3.0
+deew 3.2.3
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
             [-at] [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC]
