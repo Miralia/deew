@@ -2,13 +2,13 @@
 import re
 import subprocess
 
-with open('changelog.md') as fl:
+with open('changelog.md', encoding='utf-8') as fl:
     version = fl.read().split('\n')[0]
     version = re.match(r'# deew ([0-9\.]+):', version)[1]
 
 subprocess.run(['poetry', 'version', version])
 
-with open('deew/__main__.py', 'r+') as fl:
+with open('deew/__main__.py', 'r+', encoding='utf-8', newline='') as fl:
     main = fl.read()
     main = re.sub(r'prog_version = \'[0-9\.]+\'', f'prog_version = \'{version}\'', main, count=1)
     fl.seek(0)
@@ -47,11 +47,11 @@ readme_hu = re.sub('help_placeholder', help_, readme_hu)
 readme_en = re.sub('examples_placeholder', examples_en, readme_en)
 readme_hu = re.sub('examples_placeholder', examples_hu, readme_hu)
 
-with open('README.md', 'w') as fl:
+with open('README.md', 'w', encoding='utf-8') as fl:
     fl.write(readme_en)
 
-with open('README_hu.md', 'w') as fl:
+with open('README_hu.md', 'w', encoding='utf-8') as fl:
     fl.write(readme_hu)
 
-with open('dev_scripts/readme/help.txt', 'w') as fl:
+with open('dev_scripts/readme/help.txt', 'w', encoding='utf-8') as fl:
     fl.write(help_)
